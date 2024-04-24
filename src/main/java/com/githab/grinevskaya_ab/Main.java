@@ -25,6 +25,13 @@ public class Main {
         isDuplicateInListV2(new ArrayList<>(Arrays.asList(3, -8, -15, 17)));
         isDuplicateInListV2(new ArrayList<>(Arrays.asList(3, 5, -8, -8, -15, 17, 17, 1, 1, 5, 5, 5, 9)));
 
+
+        //testThree
+        System.out.println(isValidBrackets("[()]{[]}"));
+        System.out.println(isValidBrackets("[()](){[]}{[({})]}"));
+        System.out.println(isValidBrackets(" [()]{[]}"));
+        System.out.println(isValidBrackets("[({}])"));
+        System.out.println(isValidBrackets("())"));
     }
 
 
@@ -51,7 +58,7 @@ public class Main {
         return result;
     }
 
-//    Дан список целых чисел.
+    //    Дан список целых чисел.
 //    Необходимо реализовать метод, которые определяет, содержит ли данный список дубликаты
 //
 //    Пример:
@@ -98,5 +105,30 @@ public class Main {
             }
         }
         if (!isDuplicate) System.out.println("Нет повторяющихся элементов");
+    }
+
+    //    Дана строка состоящия из символов (){}[]. Строка является валидной, если каждая открывающая скобка корректно закрывается.
+//    Необходимо определить является ли строка валидной
+//
+//    Пример:
+//    String: [()]{[]}
+//    Result: true
+//    Все корректно
+//
+//    Пример: [({}])
+//    Result: false
+//    Скобка ] закрывает до закрытия скобки )
+//
+//    Пример: ())
+//    Result: false
+//    Скобка ) не открывалась
+    public static boolean isValidBrackets(String str) {
+        while (str.contains("{}") || str.contains("()") || str.contains("[]")) {
+            str = str.replace("()", "")
+                    .replace("{}", "")
+                    .replace("[]", "");
+        }
+
+        return str.isEmpty();
     }
 }
