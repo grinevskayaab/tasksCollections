@@ -1,18 +1,30 @@
 package com.githab.grinevskaya_ab;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         //taskOne
-        System.out.println(taskOne(new ArrayList<>(Arrays.asList(3, 8, 15, 17)), 23));
-        System.out.println(taskOne(new ArrayList<>(Arrays.asList(3, 8, 17)), 23));
-        System.out.println(taskOne(new ArrayList<>(Arrays.asList(3, 8, 1, 3, 4, 0, 17)), 17));
-        System.out.println(taskOne(new ArrayList<>(Arrays.asList(3, -8, -15, 17)), -23));
+        System.out.println(getIndexesForSum(new ArrayList<>(Arrays.asList(3, 8, 15, 17)), 23));
+        System.out.println(getIndexesForSum(new ArrayList<>(Arrays.asList(3, 8, 17)), 23));
+        System.out.println(getIndexesForSum(new ArrayList<>(Arrays.asList(3, 8, 1, 3, 4, 0, 17)), 17));
+        System.out.println(getIndexesForSum(new ArrayList<>(Arrays.asList(3, -8, -15, 17)), -23));
+
+
+        //taskTwo
+        System.out.println(isDuplicateInList(new ArrayList<>(Arrays.asList(4, 5, 6, 6, 8))));
+        System.out.println(isDuplicateInList(new ArrayList<>(Arrays.asList(4, 5, 6, 7, 8))));
+        System.out.println(isDuplicateInList(new ArrayList<>(Arrays.asList(3, -8, -15, 17))));
+        System.out.println(isDuplicateInList(new ArrayList<>(Arrays.asList(3, -8, -8, -15, 17))));
+
+        //taskTwo v2
+        isDuplicateInListV2(new ArrayList<>(Arrays.asList(4, 5, 6, 6, 8)));
+        isDuplicateInListV2(new ArrayList<>(Arrays.asList(4, 5, 6, 7, 8)));
+        isDuplicateInListV2(new ArrayList<>(Arrays.asList(3, -8, -15, 17)));
+        isDuplicateInListV2(new ArrayList<>(Arrays.asList(3, 5, -8, -8, -15, 17, 17, 1, 1, 5, 5, 5, 9)));
+
     }
 
 
@@ -25,7 +37,7 @@ public class Main {
 //    result = [1,2]
 //
 //    Т.е. индексы 1 и 2 (значение 8 и 15) в сумме дают искомое число 23
-    public static List<Integer> taskOne(List<Integer> list, Integer sum) {
+    public static List<Integer> getIndexesForSum(List<Integer> list, Integer sum) {
         List<Integer> result = new ArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {
@@ -37,5 +49,54 @@ public class Main {
             }
         }
         return result;
+    }
+
+//    Дан список целых чисел.
+//    Необходимо реализовать метод, которые определяет, содержит ли данный список дубликаты
+//
+//    Пример:
+//    List: [4,5,6,6,8]
+//    Result: true
+//    Число 6 повторяется 2 раза
+//
+//    List: [4,5,6,7,8]
+//    Result: false
+//    Дубликатов нет
+    public static boolean isDuplicateInList(List<Integer> list) {
+        Set<Integer> copyList = new HashSet<>();
+        for (Integer number : list) {
+            if (copyList.contains(number)) {
+                return true;
+            } else {
+                copyList.add(number);
+            }
+        }
+        return false;
+    }
+
+    public static void isDuplicateInListV2(List<Integer> list) {
+        Map<Integer, Integer> counterNumber = new HashMap<>();
+        for (Integer number : list) {
+            if (counterNumber.containsKey(number)) {
+                counterNumber.put(number, counterNumber.get(number) + 1);
+            } else {
+                counterNumber.put(number, 1);
+            }
+        }
+        System.out.println("\nВ массиве " + list);
+        outputDuplicate(counterNumber);
+    }
+
+    public static void outputDuplicate(Map<Integer, Integer> map) {
+        Set<Integer> keys = new TreeSet<>(map.keySet());
+        boolean isDuplicate = false;
+        for (Integer key : keys) {
+            Integer counterKey;
+            if ((counterKey = map.get(key)) > 1) {
+                System.out.println("Число " + key + " повторяется " + counterKey + " раз");
+                if (!isDuplicate) isDuplicate = true;
+            }
+        }
+        if (!isDuplicate) System.out.println("Нет повторяющихся элементов");
     }
 }
