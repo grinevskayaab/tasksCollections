@@ -6,19 +6,21 @@ import java.util.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+        System.out.println("Task 1");
         //taskOne
         System.out.println(getIndexesForSum(new ArrayList<>(Arrays.asList(3, 8, 15, 17)), 23));
         System.out.println(getIndexesForSum(new ArrayList<>(Arrays.asList(3, 8, 17)), 23));
         System.out.println(getIndexesForSum(new ArrayList<>(Arrays.asList(3, 8, 1, 3, 4, 0, 17)), 17));
         System.out.println(getIndexesForSum(new ArrayList<>(Arrays.asList(3, -8, -15, 17)), -23));
 
-
+        System.out.println("\nTask 2");
         //taskTwo
         System.out.println(isDuplicateInList(new ArrayList<>(Arrays.asList(4, 5, 6, 6, 8))));
         System.out.println(isDuplicateInList(new ArrayList<>(Arrays.asList(4, 5, 6, 7, 8))));
         System.out.println(isDuplicateInList(new ArrayList<>(Arrays.asList(3, -8, -15, 17))));
         System.out.println(isDuplicateInList(new ArrayList<>(Arrays.asList(3, -8, -8, -15, 17))));
 
+        System.out.println("\nTask 2 v2");
         //taskTwo v2
         isDuplicateInListV2(new ArrayList<>(Arrays.asList(4, 5, 6, 6, 8)));
         isDuplicateInListV2(new ArrayList<>(Arrays.asList(4, 5, 6, 7, 8)));
@@ -26,12 +28,13 @@ public class Main {
         isDuplicateInListV2(new ArrayList<>(Arrays.asList(3, 5, -8, -8, -15, 17, 17, 1, 1, 5, 5, 5, 9)));
 
 
+        System.out.println("\nTask 3*");
         //testThree
-        System.out.println(isValidBrackets("[()]{[]}"));
-        System.out.println(isValidBrackets("[()](){[]}{[({})]}"));
-        System.out.println(isValidBrackets(" [()]{[]}"));
-        System.out.println(isValidBrackets("[({}])"));
-        System.out.println(isValidBrackets("())"));
+        System.out.println("[()]{[]} - " + isValidBrackets("[()]{[]}"));
+        System.out.println("[()](){[]}{[({})]} - " + isValidBrackets("[()](){[]}{[({})]}"));
+        System.out.println(" [()]{[]} - " + isValidBrackets(" [()]{[]}"));
+        System.out.println("[({}]) - " + isValidBrackets("[({}])"));
+        System.out.println("()) - " + isValidBrackets("())"));
     }
 
 
